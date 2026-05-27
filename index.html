@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QHVH7SKTY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0QHVH7SKTY');
+</script>
+<!-- Google AdSense compliance metadata -->
+<meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>QuickSync IT Cleaning | Elite Remote IT Services – Cape Town</title>
+<meta name="description" content="Premium remote IT support & cyber security by QuickSync IT Cleaning Services. Windows, Linux, ethical hacking, phone unlocking, AI automation, printer setup, POS, firewall, network, SIM swap recovery. Sync your space with perfection.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #050b14;
+    color: #eef5ff;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.2s;
+  }
+  body.light {
+    background: #f4f9fe;
+    color: #0a1927;
+  }
+  body.light .service-card, body.light .pricing-card, body.light .faq-item, body.light .testimonial-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 255, 157, 0.3);
+    color: #0a2e2a;
+  }
+  #particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #03060c;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    transition: opacity 0.5s;
+  }
+  .loader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(0,255,157,0.2);
+    border-top: 4px solid #0affa3;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  
+  /* Sidebar Navigation */
+  .sidebar-nav {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: rgba(5, 15, 25, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border-right: 1px solid rgba(10, 255, 163, 0.4);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+  }
+  body.light .sidebar-nav {
+    background: rgba(245, 250, 255, 0.98);
+    border-right: 1px solid #0affa3;
+  }
+  .sidebar-nav.open {
+    left: 0;
+  }
+  .sidebar-nav .close-sidebar {
+    align-self: flex-end;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #0affa3;
+    background: none;
+    border: none;
+  }
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .sidebar-links a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(10,255,163,0.2);
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sidebar-links a:hover { color: #0affa3; transform: translateX(5px); }
+  .sidebar-footer {
+    margin-top: auto;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    backdrop-filter: blur(16px);
+    background: rgba(5, 11, 20, 0.8);
+    border-bottom: 1px solid rgba(10, 255, 163, 0.3);
+  }
+  body.light nav { background: rgba(255,255,240,0.9); }
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 2rem;
+    max-width: 1400px;
+    margin: auto;
+  }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .brand-main {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #ffffff, #0affa3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .brand-tagline {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #b0e0d0;
+    letter-spacing: 0.3px;
+    opacity: 0.85;
+  }
+  body.light .brand-tagline { color: #0a5e4a; }
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .menu-icon {
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #0affa3;
+  }
+  .theme-toggle, .menu-icon { margin-left: 12px; cursor: pointer; font-size: 1.4rem; }
+  .nav-actions { display: flex; align-items: center; gap: 1rem; }
+  .glow-btn {
+    background: linear-gradient(90deg, #0affa3, #0d8b5e);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 40px;
+    font-weight: bold;
+    color: #03060c;
+    transition: 0.3s;
+    box-shadow: 0 0 12px #0affa370;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .glow-btn:hover:not(:disabled) { transform: scale(1.03); box-shadow: 0 0 25px #0affa3; }
+  .glow-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .service-card, .pricing-card, .testimonial-card, .faq-item {
+    background: rgba(10, 20, 30, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 28px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(10, 255, 163, 0.2);
+  }
+  .service-card:hover, .pricing-card:hover { transform: translateY(-8px); border-color: #0affa3; box-shadow: 0 15px 35px rgba(0,255,157,0.15); }
+  .grid-3, .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 2rem; margin: 2rem 0; }
+  .testimonial-slider { display: flex; overflow-x: auto; gap: 2rem; scroll-snap-type: x mandatory; padding: 1rem 0; }
+  .testimonial-card { min-width: 300px; scroll-snap-align: start; cursor: pointer; }
+  .faq-question { font-weight: bold; display: flex; justify-content: space-between; cursor: pointer; padding: 1rem 0; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s; padding-left: 1rem; }
+  .whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25D366;
+    border-radius: 50%;
+    padding: 16px;
+    z-index: 1000;
+    box-shadow: 0 0 20px #25D366;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
+  @media (max-width: 900px) {
+    .container { padding: 0 1rem; }
+    .brand-main { font-size: 0.9rem; }
+    .brand-tagline { font-size: 0.55rem; }
+  }
+  .section-title { font-size: 2.5rem; margin: 2rem 0 1rem; background: linear-gradient(135deg, #fff, #0affa3); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .price-calc { background: rgba(0,0,0,0.5); border-radius: 28px; padding: 2rem; margin: 2rem 0; }
+  input, select, textarea { background: rgba(20,30,40,0.8); border: 1px solid #0affa380; padding: 12px; border-radius: 20px; color: white; width: 100%; margin: 8px 0; }
+  body.light input, body.light select, body.light textarea { background: white; color: black; }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+  }
+  .modal.active { visibility: visible; opacity: 1; }
+  .modal-content {
+    background: #0f1a24;
+    border-radius: 30px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid #0affa3;
+    text-align: center;
+  }
+  .toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #0f1a24;
+    border-left: 5px solid #0affa3;
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    z-index: 3000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+    font-weight: 500;
+    backdrop-filter: blur(12px);
+    min-width: 280px;
+    text-align: center;
+  }
+  .toast-notification.show { transform: translateX(-50%) translateY(0); }
+  .toast-error { border-left-color: #ff4444; }
+  .toast-success { border-left-color: #0affa3; }
+  .security-note { font-size: 0.8rem; color: #0affa3; margin-top: 1rem; }
+  .stats { display: flex; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
+  .counter { font-size: 2rem; font-weight: bold; color: #0affa3; }
+  .booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 768px) { .booking-row { grid-template-columns: 1fr; } }
+  .spinner-btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0,0,0,0.3);
+    border-top: 2px solid #03060c;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .blinking-cursor { animation: blink 1s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .popular-badge { background: #0affa3; color: black; padding: 4px 8px; border-radius: 20px; font-size: 0.7rem; display: inline-block; margin-top: 8px; }
+  .small { padding: 0.4rem 1rem; font-size: 0.8rem; margin-top: 10px; }
+  .hero-image { max-width: 100%; border-radius: 32px; box-shadow: 0 0 30px rgba(10,255,163,0.3); }
+  .flex-hero { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+  .flex-hero > div { flex: 1; }
+  .contact-card-modern {
+    background: rgba(10, 25, 35, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 32px;
+    padding: 1.8rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(10, 255, 163, 0.4);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+  body.light .contact-card-modern { background: rgba(255,255,245,0.8); color: #0a2e2a; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    background: rgba(0,0,0,0.3);
+    padding: 8px 18px;
+    border-radius: 60px;
+    backdrop-filter: blur(4px);
+  }
+  body.light .contact-item { background: rgba(0,0,0,0.05); }
+  .contact-item i { color: #0affa3; font-size: 1.3rem; }
+  .premium-footer {
+    margin-top: 4rem;
+    border-radius: 28px 28px 0 0;
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.6), rgba(5, 15, 20, 0.8));
+    backdrop-filter: blur(12px);
+    padding: 2rem 2rem 1.5rem;
+    border-top: 1px solid rgba(10, 255, 163, 0.5);
+    border-bottom: 1px solid rgba(10, 255, 163, 0.2);
+  }
+  body.light .premium-footer {
+    background: rgba(230, 245, 240, 0.9);
+    border-top: 1px solid #0affa3;
+  }
+  .footer-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .footer-copyright {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    background: linear-gradient(120deg, #b5ffdd, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  body.light .footer-copyright {
+    background: linear-gradient(120deg, #0d6b50, #1a2f2a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .footer-badge {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-badge span {
+    background: rgba(10, 255, 163, 0.15);
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+  }
+  .footer-ethical {
+    text-align: center;
+    font-size: 0.7rem;
+    margin-top: 1.5rem;
+    opacity: 0.7;
+    border-top: 1px dashed rgba(10,255,163,0.3);
+    padding-top: 1rem;
+  }
+  @media (max-width: 680px) {
+    .footer-flex { flex-direction: column; text-align: center; }
+    .footer-badge { justify-content: center; }
+  }
+
+  /* Custom Video Player Styles - Fully Functional */
+  .video-showcase {
+    margin: 3rem 0 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 36px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(10, 255, 163, 0.5);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    background: #000;
+    cursor: pointer;
+  }
+  .video-container video {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    max-height: 520px;
+    background: #000;
+  }
+  .custom-video-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1.2rem;
+    background: rgba(5, 15, 25, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(10, 255, 163, 0.4);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  body.light .custom-video-controls {
+    background: rgba(240, 248, 245, 0.95);
+  }
+  .control-btn {
+    background: none;
+    border: none;
+    color: #0affa3;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 40px;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+  }
+  .control-btn:hover {
+    background: rgba(10, 255, 163, 0.2);
+    transform: scale(1.02);
+  }
+  .progress-bar-container {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 5px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+  }
+  .progress-filled {
+    width: 0%;
+    height: 100%;
+    background: #0affa3;
+    border-radius: 10px;
+    transition: width 0.1s linear;
+    position: relative;
+  }
+  .progress-filled::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #0affa3;
+    border-radius: 50%;
+  }
+  .time-display {
+    font-size: 0.8rem;
+    font-family: monospace;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    border-radius: 30px;
+  }
+  .volume-slider {
+    width: 80px;
+    cursor: pointer;
+    accent-color: #0affa3;
+  }
+  .download-btn {
+    background: linear-gradient(135deg, #0affa3, #0d8b5e);
+    color: #03060c;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .download-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 12px #0affa3;
+  }
+  .video-title {
+    padding: 0.8rem 1.2rem;
+    font-weight: 600;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(10, 255, 163, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .video-title i {
+    color: #0affa3;
+    font-size: 1.2rem;
+  }
+  .play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(10, 255, 163, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .video-container:hover .play-overlay {
+    opacity: 1;
+  }
+  .play-overlay i {
+    font-size: 2.5rem;
+    color: #03060c;
+    margin-left: 5px;
+  }
+  @media (max-width: 680px) {
+    .custom-video-controls { flex-direction: column; align-items: stretch; }
+    .progress-bar-container { width: 100%; }
+    .control-group { display: flex; justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-spinner"></div><p style="color:#0affa3">Syncing your space with perfection...</p></div>
+<canvas id="particles-canvas"></canvas>
+
+<!-- Sidebar Navigation Dropdown -->
+<div class="sidebar-nav" id="sidebarNav">
+  <button class="close-sidebar" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
+  <div class="sidebar-links">
+    <a href="#home"><i class="fas fa-home"></i> Home</a>
+    <a href="#services"><i class="fas fa-microchip"></i> Services</a>
+    <a href="#pricing"><i class="fas fa-tag"></i> Pricing</a>
+    <a href="#booking"><i class="fas fa-calendar-check"></i> Booking</a>
+    <a href="#reviews"><i class="fas fa-star"></i> Reviews</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+  <div class="sidebar-footer">
+    <p><i class="fas fa-shield-alt"></i> Ethical & Legal IT</p>
+    <p>© 2026 QuickSync</p>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo-wrapper">
+      <div class="brand-text">
+        <span class="brand-main">QuickSync IT Cleaning Services</span>
+        <span class="brand-tagline">— Sync your space with perfection</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <div class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></div>
+      <div class="menu-icon" id="menuIcon"><i class="fas fa-bars"></i></div>
+    </div>
+  </div>
+</nav>
+
+<main class="container" id="home">
+  <section class="flex-hero" style="min-height: 90vh; padding: 4rem 0;">
+    <div><div><span id="liveClock" style="font-family: monospace; background: #0affa322; padding: 4px 12px; border-radius: 50px;"></span> <span id="statusBadge" style="background: #0affa3; color: black; border-radius: 50px; padding: 4px 12px;">OPEN</span></div>
+      <h1 style="font-size: 3.5rem;">Elite <span id="typewriter" style="color:#0affa3"></span><span class="blinking-cursor">|</span></h1>
+      <p style="font-size: 1.2rem; margin: 1rem 0;">Sync your space with perfection — Remote IT Cleaning & Security. WhatsApp-based. Cape Town to the world. Printers, POS, Firewalls, Networks & SIM Swap Recovery.</p>
+      <div class="stats"><div><span class="counter" data-target="1580">0</span>+ Projects</div><div><span class="counter" data-target="99">0</span>% Satisfaction</div><div><span class="counter" data-target="24">0</span>/7 Support</div></div>
+      <button class="glow-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Get Instant Support →</button>
+    </div>
+    <div style="text-align: center;"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23050b14'/%3E%3Ctext x='200' y='150' font-size='24' fill='%230affa3' text-anchor='middle'%3EQuickSync IT Cleaning%3C/text%3E%3Ctext x='200' y='190' font-size='18' fill='%23ffffff' text-anchor='middle'%3ESync Your Space With Perfection%3C/text%3E%3C/svg%3E" alt="QuickSync Hero" class="hero-image"></div>
+  </section>
+
+  <!-- FULLY FUNCTIONAL VIDEO PLAYER SECTION with Thumbnail & Download -->
+  <div class="video-showcase" id="videoShowcase">
+    <div class="video-title">
+      <i class="fas fa-play-circle"></i> 
+      <span>🎥 QuickSync IT Cleaning — Professional Remote IT Support Demo</span>
+    </div>
+    <div class="video-container" id="videoContainer">
+      <video id="promoVideo" poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=675&fit=crop" preload="metadata" controlsList="nodownload">
+        <!-- High-quality working video file from reliable CDN (Big Buck Bunny - standard test video that plays everywhere) -->
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+        <source src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="play-overlay" id="playOverlay">
+        <i class="fas fa-play"></i>
+      </div>
+    </div>
+    <div class="custom-video-controls">
+      <div class="control-group">
+        <button class="control-btn" id="playPauseBtn"><i class="fas fa-play"></i> Play</button>
+        <button class="control-btn" id="muteBtn"><i class="fas fa-volume-up"></i> Mute</button>
+        <button class="control-btn" id="fullscreenBtn"><i class="fas fa-expand"></i> Full</button>
+      </div>
+      <div class="progress-bar-container">
+        <span class="time-display" id="currentTime">0:00</span>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-filled" id="progressFilled"></div>
+        </div>
+        <span class="time-display" id="durationTime">0:00</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.05" value="0.8">
+        <button id="downloadVideoBtn" class="download-btn">
+          <i class="fas fa-download"></i> Download Video
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <section id="services"><h2 class="section-title">⚡ Futuristic IT Solutions</h2><div class="services-grid" id="servicesGrid"></div></section>
+  <section id="pricing"><h2 class="section-title">💰 Dynamic Pricing & Calculator</h2><div class="price-calc"><h3>Estimate your project cost</h3><select id="serviceSelect"></select><select id="complexity"><option value="Basic">Basic</option><option value="Moderate">Moderate (+35%)</option><option value="Advanced">Advanced (+80%)</option><option value="Enterprise">Enterprise (+150%)</option></select><select id="urgency"><option value="Normal">Normal</option><option value="Emergency">Emergency (+50%)</option><option value="Enterprise Support">Enterprise Support (+100%)</option></select><div id="pricePreview" style="margin-top: 1rem; font-size: 1.8rem; font-weight: bold;">Estimated: R0</div><button id="applyPriceToBooking" class="glow-btn" style="margin-top: 1rem;">Apply to booking</button></div><div class="grid-3" id="pricingCards"></div></section>
+
+  <section id="booking"><h2 class="section-title">📋 Premium Booking & Registration</h2>
+    <form id="bookingForm" style="background: rgba(0,0,0,0.5); border-radius: 32px; padding: 2rem;">
+      <div class="booking-row">
+        <input type="text" id="fullName" placeholder="Full Name*" required>
+        <input type="email" id="email" placeholder="Email*" required>
+        <input type="tel" id="phone" placeholder="Phone">
+        <input type="tel" id="whatsappNum" placeholder="WhatsApp Number*" required>
+        <input type="text" id="city" placeholder="City">
+        <select id="deviceType"><option>Laptop</option><option>Desktop</option><option>Mobile</option><option>Printer/Scanner</option><option>POS Terminal</option></select>
+        <select id="serviceNeeded" required></select>
+        <textarea id="problemDesc" placeholder="Problem description" rows="2"></textarea>
+        <select id="paymentMethod"><option>EFT</option><option>Bank Transfer</option><option>eWallet</option><option>Cash Send</option></select>
+        <select id="urgencyLevel"><option>Normal</option><option>Urgent</option><option>Emergency</option></select>
+        <select id="issueComplexity"><option>Basic</option><option>Moderate</option><option>Advanced</option><option>Enterprise</option></select>
+        <input type="file" id="screenshotUpload" accept="image/jpeg,image/png,image/webp">
+      </div>
+      <div id="simSwapExtra" style="display: none; background: rgba(0,255,157,0.1); padding: 1rem; border-radius: 24px; margin-top: 1rem;">
+        <h4><i class="fas fa-sim-card"></i> SIM Swap Recovery (Lost from a year ago)</h4>
+        <select id="simNetwork">
+          <option value="MTN">MTN (Deposit R400 | Full R1000)</option>
+          <option value="Vodacom">Vodacom (Deposit R400 | Full R1000)</option>
+        </select>
+        <input type="text" id="oldSimNumber" placeholder="Original phone number lost*">
+        <input type="text" id="idNumber" placeholder="ID / Passport Number*">
+        <p style="font-size: 0.8rem; margin-top: 8px;">🔒 Deposit: R400 | Total: R1000. Balance paid after successful recovery.</p>
+      </div>
+      <button type="submit" id="bookingSubmitBtn" class="glow-btn" style="margin-top: 1rem; width: 100%;">Submit Booking → Open WhatsApp</button>
+      <p class="security-note">⚠️ All ethical hacking & security services are strictly legal, authorized, and performed only with client permission.</p>
+      <p class="security-note">💰 Payments are completed ONLY after successful project completion and customer satisfaction.</p>
+    </form>
+  </section>
+
+  <section id="reviews"><h2 class="section-title">⭐ Trusted by Cape Town</h2><div class="testimonial-slider" id="testimonialSlider"></div></section>
+  <section id="faq"><h2 class="section-title">❓ Intelligent FAQ</h2><div id="faqContainer"></div></section>
+  
+  <section id="contact"><h2 class="section-title">📞 Quantum Contact</h2>
+    <div class="contact-card-modern">
+      <div class="contact-item"><i class="fas fa-envelope"></i> hr4u@fastservice.com</div>
+      <div class="contact-item"><i class="fab fa-whatsapp"></i> +27714337743</div>
+      <div class="contact-item"><i class="fas fa-phone-alt"></i> 0875106147</div>
+      <div class="contact-item"><i class="fas fa-map-marker-alt"></i> 1 Bridgewater Precinct, Century City, Cape Town 7741 (Remote)</div>
+    </div>
+    <form id="contactForm">
+      <input type="text" placeholder="Your Name*" id="contactName" required>
+      <input type="email" placeholder="Email Address*" id="contactEmail" required>
+      <textarea placeholder="Your message" id="contactMsg" rows="3" required></textarea>
+      <button type="submit" id="contactSubmitBtn" class="glow-btn">Send Message</button>
+    </form>
+  </section>
+  
+  <div class="premium-footer">
+    <div class="footer-flex">
+      <div class="footer-copyright">
+        <i class="far fa-copyright"></i> 2026 QuickSync IT Cleaning Services — All rights reserved.
+      </div>
+      <div class="footer-badge">
+        <span><i class="fas fa-shield-alt"></i> Ethical Hacking</span>
+        <span><i class="fas fa-headset"></i> 24/7 Remote IT</span>
+        <span><i class="fas fa-lock"></i> Secure Payments</span>
+      </div>
+    </div>
+    <div class="footer-ethical">
+      <i class="fas fa-globe-africa"></i> Remote IT Support • Cape Town HQ • Global Reach • Sync your space with perfection
+    </div>
+  </div>
+</main>
+<div class="whatsapp-float" id="whatsappFloat"><i class="fab fa-whatsapp fa-2x" style="color:white"></i></div>
+<div id="successModal" class="modal"><div class="modal-content"><h2>✔ Booking Synced!</h2><p id="modalMessage">Redirecting to WhatsApp to send your ticket...</p><button onclick="closeModal()" class="glow-btn" style="margin-top: 1rem;">Close</button></div></div>
+
+<script>
+// NEW SERVICE ENTRIES
+var NEW_SERVICES = {
+  "Printer Setup / Malfunction": [250, 1200],
+  "Point of Sale (POS) Support": [500, 3500],
+  "Firewall & Cybersecurity Setup": [800, 7500],
+  "Network Troubleshooting (WiFi/LAN)": [400, 2800],
+  "SIM Swap Recovery (MTN/Vodacom)": [400, 1000]
+};
+
+var SUPABASE_URL = 'https://pgprjiooejclsdarruli.supabase.co';
+var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBncHJqaW9vZWpjbHNkYXJydWxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NTIyMDUsImV4cCI6MjA5NTIyODIwNX0.dDw711XIsTrvmc7KyfhHcckyTuKdE_WAbmy4CJGDPfQ';
+var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+window.addEventListener('load', () => {
+  setTimeout(() => { let loader = document.getElementById('loader'); if(loader){ loader.style.opacity='0'; setTimeout(()=>loader.style.display='none',500); } }, 800);
+});
+
+function showToast(message, type) { 
+  type = type || 'success';
+  let existing = document.querySelector('.toast-notification');
+  if(existing) existing.remove();
+  let toast = document.createElement('div');
+  toast.className = 'toast-notification toast-' + type;
+  let icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle';
+  toast.innerHTML = '<i class="fas ' + icon + '"></i> ' + message;
+  document.body.appendChild(toast);
+  setTimeout(()=>toast.classList.add('show'),10);
+  setTimeout(()=>{ toast.classList.remove('show'); setTimeout(()=>toast.remove(),500); },4000);
+}
+
+window.selectService = function(service){
+  let serviceSelect = document.getElementById('serviceNeeded');
+  if(serviceSelect) serviceSelect.value = service;
+  let simExtra = document.getElementById('simSwapExtra');
+  if(service === "SIM Swap Recovery (MTN/Vodacom)") simExtra.style.display = "block";
+  else simExtra.style.display = "none";
+  document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+  showToast('Selected: ' + service, 'success');
+  if(typeof gtag !== 'undefined') gtag('event', 'select_service', { 'service_name': service });
+};
+
+window.closeModal = function(){ document.getElementById('successModal')?.classList.remove('active'); };
+window.toggleFaq = function(idx){ let ans = document.getElementById('faqAns'+idx); if(ans){ if(ans.style.maxHeight && ans.style.maxHeight !== '0px') ans.style.maxHeight='0px'; else ans.style.maxHeight = ans.scrollHeight+'px'; } };
+
+var originalPrices = { "Remote IT Support":[150,450], "Windows Installation":[300,850], "Linux Installation":[350,900], "Website Development":[1500,15000], "Android Debugging":[250,1200], "Virus Removal":[200,700], "Facebook Recovery":[250,1000], "Ethical Hacking":[1200,25000], "System Management":[800,5000], "Backend Development":[3000,30000], "Frontend Development":[2000,15000], "Flyer Design":[150,800], "Phone Unlocking":[250,1500], "Operating System Repair":[300,1000], "Data Recovery":[500,5000], "AI Automation Setup":[1500,20000] };
+var prices = { ...originalPrices, ...NEW_SERVICES };
+var servicesList = Object.keys(prices);
+
+function calcPrice(service, complexity, urgency){
+  let range = prices[service] || [200,800];
+  let baseAvg = (range[0]+range[1])/2;
+  let compMult = { 'Basic':1, 'Moderate':1.35, 'Advanced':1.8, 'Enterprise':2.5 }[complexity]||1;
+  let urgMult = { 'Normal':1, 'Urgent':1.3, 'Emergency':1.5, 'Enterprise Support':2.0 }[urgency]||1;
+  let final = Math.min(Math.round(baseAvg*compMult*urgMult), range[1]*2.8);
+  if(service === "SIM Swap Recovery (MTN/Vodacom)") final = 1000;
+  return final;
+}
+function updatePricePreview(){
+  let service = document.getElementById('serviceSelect')?.value || servicesList[0];
+  let complexity = document.getElementById('complexity')?.value || 'Basic';
+  let urgency = document.getElementById('urgency')?.value || 'Normal';
+  let est = calcPrice(service, complexity, urgency);
+  let preview = document.getElementById('pricePreview');
+  if(preview) preview.innerHTML = 'Estimated: R' + est.toLocaleString();
+}
+function populateServices(){
+  let options = servicesList.map(s=>`<option value="${s}">${s}</option>`).join('');
+  document.getElementById('serviceSelect').innerHTML = options;
+  document.getElementById('serviceNeeded').innerHTML = options;
+  let servicesGrid = document.getElementById('servicesGrid');
+  if(servicesGrid) servicesGrid.innerHTML = servicesList.map(s=>`<div class="service-card"><i class="fas ${s.includes('Printer')?'fa-print': s.includes('POS')?'fa-cash-register': s.includes('Firewall')?'fa-shield-alt': s.includes('Network')?'fa-wifi': s.includes('SIM')?'fa-sim-card':'fa-microchip'} " style="font-size:2rem;color:#0affa3;"></i><h3>${s}</h3><p>Starting at R${prices[s][0]}</p><button class="glow-btn small" onclick="selectService('${s.replace(/'/g,"\\'")}')">Book Now</button></div>`).join('');
+  let pricingCards = document.getElementById('pricingCards');
+  if(pricingCards) pricingCards.innerHTML = servicesList.slice(0,14).map(s=>`<div class="pricing-card"><h3>${s}</h3><p>R${prices[s][0]} – R${prices[s][1]}</p>${s==='SIM Swap Recovery (MTN/Vodacom)'?'<span class="popular-badge">★ Deposit R400</span>':'<span class="popular-badge">★ Popular</span>'}</div>`).join('');
+}
+
+let isSubmitting=false;
+function initBookingForm(){
+  let form = document.getElementById('bookingForm');
+  let serviceSelect = document.getElementById('serviceNeeded');
+  serviceSelect.addEventListener('change', function(){
+    let simExtra = document.getElementById('simSwapExtra');
+    if(this.value === "SIM Swap Recovery (MTN/Vodacom)") simExtra.style.display = "block";
+    else simExtra.style.display = "none";
+  });
+  if(!form) return;
+  form.addEventListener('submit', async(e)=>{
+    e.preventDefault();
+    if(isSubmitting) return;
+    let fullName = document.getElementById('fullName').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let whatsappNum = document.getElementById('whatsappNum').value.trim();
+    let serviceNeeded = document.getElementById('serviceNeeded').value;
+    if(!fullName || !email || email.indexOf('@')===-1 || !whatsappNum || whatsappNum.length<8){ showToast('Please fill all required fields correctly','error'); return; }
+    
+    let simNetwork = '', oldSimNumber = '', idNumber = '';
+    if(serviceNeeded === "SIM Swap Recovery (MTN/Vodacom)"){
+      simNetwork = document.getElementById('simNetwork').value;
+      oldSimNumber = document.getElementById('oldSimNumber').value.trim();
+      idNumber = document.getElementById('idNumber').value.trim();
+      if(!oldSimNumber || !idNumber){
+        showToast('For SIM swap, please provide original number and ID number','error');
+        return;
+      }
+    }
+    
+    isSubmitting=true;
+    let btn = document.getElementById('bookingSubmitBtn');
+    let original = btn.innerHTML;
+    btn.disabled=true; btn.innerHTML='<span class="spinner-btn"></span> Processing...';
+    let ticketId = 'QS-'+Date.now()+'-'+Math.floor(Math.random()*1000);
+    let phone = document.getElementById('phone').value.trim();
+    let city = document.getElementById('city').value.trim();
+    let deviceType = document.getElementById('deviceType').value;
+    let problemDesc = document.getElementById('problemDesc').value.trim() || 'No description';
+    let paymentMethod = document.getElementById('paymentMethod').value;
+    let urgencyLevel = document.getElementById('urgencyLevel').value;
+    let issueComplexity = document.getElementById('issueComplexity').value;
+    let estimatedPrice = calcPrice(serviceNeeded, issueComplexity, urgencyLevel);
+    if(serviceNeeded === "SIM Swap Recovery (MTN/Vodacom)") estimatedPrice = 1000;
+    
+    let screenshotUrl=null;
+    let file = document.getElementById('screenshotUpload').files[0];
+    if(file && file.size<5*1024*1024){
+      let fileName = ticketId+'_'+Date.now()+'.'+file.name.split('.').pop();
+      let uploadResult = await supabase.storage.from('booking-screenshots').upload('public/'+fileName, file);
+      if(!uploadResult.error) screenshotUrl = supabase.storage.from('booking-screenshots').getPublicUrl('public/'+fileName).data.publicUrl;
+    }
+    
+    let finalProblemDesc = problemDesc;
+    if(serviceNeeded === "SIM Swap Recovery (MTN/Vodacom)"){
+      finalProblemDesc += ` [SIM SWAP: Network=${simNetwork}, LostNumber=${oldSimNumber}, ID=${idNumber}]`;
+    }
+    
+    try{
+      let {error} = await supabase.from('bookings').insert([{ ticket_id:ticketId, full_name:fullName, email, phone, whatsapp_number:whatsappNum, city, device_type:deviceType, service_needed:serviceNeeded, problem_description:finalProblemDesc, payment_method:paymentMethod, urgency_level:urgencyLevel, issue_complexity:issueComplexity, screenshot_url:screenshotUrl, estimated_price:estimatedPrice, status:'pending' }]);
+      if(error) throw error;
+      showToast('Booking saved! Redirecting...','success');
+      
+      let depositInfo = (serviceNeeded === "SIM Swap Recovery (MTN/Vodacom)") ? `%0ADeposit: R400 (MTN/Vodacom)%0ATotal: R1000%0ANetwork: ${simNetwork}%0ALost Number: ${oldSimNumber}%0AID: ${idNumber}` : '';
+      let whatsappMsg = `Hello QuickSync!%0A%0AI would like to request IT support.%0A%0AHere are my details:%0ATicket ID: ${ticketId}%0AName: ${fullName}%0AEmail: ${email}%0AWhatsApp: ${whatsappNum}%0AService: ${serviceNeeded}%0AIssue: ${finalProblemDesc.substring(0,150)}%0AComplexity: ${issueComplexity}%0AUrgency: ${urgencyLevel}%0AEstimated Price: R${estimatedPrice}${depositInfo}%0A%0APlease confirm my booking. Thank you!`;
+      
+      let agentNumber = '27714337743';
+      let waUrl = 'https://wa.me/' + agentNumber + '?text=' + whatsappMsg;
+      
+      document.getElementById('modalMessage').innerHTML = 'Opening WhatsApp to send your ticket to QuickSync agent...';
+      document.getElementById('successModal').classList.add('active');
+      setTimeout(()=>{ window.location.href = waUrl; }, 500);
+      form.reset(); 
+      document.getElementById('screenshotUpload').value = '';
+      document.getElementById('simSwapExtra').style.display = 'none';
+    } catch(err){ 
+      showToast('Submission error: ' + (err.message || 'Unknown'), 'error'); 
+    } finally{ 
+      isSubmitting=false; 
+      btn.disabled=false; 
+      btn.innerHTML=original; 
+    }
+  });
+}
+function initContactForm(){
+  let form = document.getElementById('contactForm');
+  if(!form) return;
+  let contactSubmitting=false;
+  form.addEventListener('submit', async(e)=>{
+    e.preventDefault();
+    if(contactSubmitting) return;
+    let name = document.getElementById('contactName').value.trim();
+    let email = document.getElementById('contactEmail').value.trim();
+    let message = document.getElementById('contactMsg').value.trim();
+    if(!name||!email||email.indexOf('@')===-1||!message){ showToast('All fields required','error'); return; }
+    contactSubmitting=true; let btn = document.getElementById('contactSubmitBtn');
+    let orig=btn.innerHTML; btn.disabled=true; btn.innerHTML='<span class="spinner-btn"></span> Sending...';
+    let {error} = await supabase.from('contact_messages').insert([{name, email, message, created_at:new Date()}]);
+    if(error){ showToast('Error sending','error'); } else { showToast('Message sent!','success'); form.reset(); if(typeof gtag!=='undefined') gtag('event','contact_form_submit'); }
+    btn.disabled=false; btn.innerHTML=orig; contactSubmitting=false;
+  });
+}
+
+// FULLY FUNCTIONAL VIDEO PLAYER
+function initVideoPlayer() {
+  const video = document.getElementById('promoVideo');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const muteBtn = document.getElementById('muteBtn');
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFilled = document.getElementById('progressFilled');
+  const currentTimeSpan = document.getElementById('currentTime');
+  const durationSpan = document.getElementById('durationTime');
+  const volumeSlider = document.getElementById('volumeSlider');
+  const downloadBtn = document.getElementById('downloadVideoBtn');
+  const playOverlay = document.getElementById('playOverlay');
+  const videoContainer = document.getElementById('videoContainer');
+  
+  if (!video) return;
+  
+  function formatTime(seconds) {
+    if (isNaN(seconds) || !isFinite(seconds)) return "0:00";
+    let mins = Math.floor(seconds / 60);
+    let secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+  
+  video.addEventListener('loadedmetadata', () => {
+    durationSpan.innerText = formatTime(video.duration);
+  });
+  
+  video.addEventListener('timeupdate', () => {
+    let percent = (video.currentTime / video.duration) * 100;
+    progressFilled.style.width = percent + '%';
+    currentTimeSpan.innerText = formatTime(video.currentTime);
+  });
+  
+  function togglePlay() {
+    if (video.paused) {
+      video.play();
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+      if(playOverlay) playOverlay.style.opacity = '0';
+    } else {
+      video.pause();
+      playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Play';
+    }
+  }
+  
+  playPauseBtn.addEventListener('click', togglePlay);
+  
+  if(playOverlay) {
+    playOverlay.addEventListener('click', togglePlay);
+  }
+  
+  video.addEventListener('play', () => { 
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+    if(playOverlay) playOverlay.style.opacity = '0';
+  });
+  video.addEventListener('pause', () => { 
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Play';
+  });
+  
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i> Unmute' : '<i class="fas fa-volume-up"></i> Mute';
+    if(!video.muted) volumeSlider.value = video.volume;
+  });
+  
+  progressBar.addEventListener('click', (e) => {
+    const rect = progressBar.getBoundingClientRect();
+    const pos = (e.clientX - rect.left) / rect.width;
+    video.currentTime = pos * video.duration;
+  });
+  
+  volumeSlider.addEventListener('input', (e) => {
+    video.volume = parseFloat(e.target.value);
+    video.muted = false;
+    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Mute';
+  });
+  
+  fullscreenBtn.addEventListener('click', () => {
+    if (videoContainer.requestFullscreen) {
+      videoContainer.requestFullscreen();
+    } else if (videoContainer.webkitRequestFullscreen) {
+      videoContainer.webkitRequestFullscreen();
+    } else if (videoContainer.msRequestFullscreen) {
+      videoContainer.msRequestFullscreen();
+    }
+  });
+  
+  downloadBtn.addEventListener('click', () => {
+    const videoUrl = video.querySelector('source')?.src || video.src;
+    if(videoUrl) {
+      const a = document.createElement('a');
+      a.href = videoUrl;
+      a.download = 'QuickSync_IT_Support_Demo.mp4';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast('Download started!', 'success');
+    } else {
+      showToast('Video source not available', 'error');
+    }
+  });
+  
+  video.volume = 0.8;
+  volumeSlider.value = 0.8;
+  
+  videoContainer.addEventListener('click', (e) => {
+    if(e.target === videoContainer || e.target === video) {
+      togglePlay();
+    }
+  });
+}
+
+function initUI(){
+  let sidebar = document.getElementById('sidebarNav');
+  document.getElementById('menuIcon').onclick = ()=> sidebar.classList.add('open');
+  document.getElementById('closeSidebarBtn').onclick = ()=> sidebar.classList.remove('open');
+  document.querySelectorAll('.sidebar-links a').forEach(link => { link.addEventListener('click', (e)=>{ sidebar.classList.remove('open'); }); });
+  setInterval(()=>{
+    let now=new Date(); let hours=now.getHours(); let day=now.getDay(); let isOpen=(day>=1&&day<=5&&hours>=8&&hours<17);
+    let badge=document.getElementById('statusBadge'); if(badge){ badge.innerHTML=isOpen?'OPEN':'CLOSED'; badge.style.background=isOpen?'#0affa3':'#ff4444'; }
+    let clockSpan=document.getElementById('liveClock'); if(clockSpan) clockSpan.innerHTML=now.toLocaleTimeString('en-ZA');
+  },1000);
+  document.getElementById('themeToggle').onclick = ()=> document.body.classList.toggle('light');
+  document.getElementById('whatsappFloat').onclick = ()=>{ if(typeof gtag!=='undefined') gtag('event','whatsapp_click'); window.location.href='https://wa.me/27714337743?text=Hello%20QuickSync!%0A%0AI%20would%20like%20to%20request%20IT%20support.'; };
+  document.getElementById('applyPriceToBooking').onclick = ()=>{ let val=document.getElementById('serviceSelect').value; document.getElementById('serviceNeeded').value=val; showToast('Service synced to booking','success'); };
+  let sSel=document.getElementById('serviceSelect'), comp=document.getElementById('complexity'), urg=document.getElementById('urgency');
+  if(sSel) sSel.onchange=updatePricePreview; if(comp) comp.onchange=updatePricePreview; if(urg) urg.onchange=updatePricePreview;
+  let typeEl=document.getElementById('typewriter'), keywords=["IT Security","AI Automation","Ethical Hacking","Remote Support","Data Recovery","Printer Fix","POS Repair","Firewall Setup"], idx=0, cidx=0, del=false;
+  function type(){ if(!typeEl) return; let cur=keywords[idx]; if(del){ typeEl.innerText=cur.substring(0, cidx--); } else { typeEl.innerText=cur.substring(0, cidx++); } if(!del && cidx===cur.length+1){ del=true; setTimeout(type,1500); return; } if(del && cidx===0){ del=false; idx=(idx+1)%keywords.length; } setTimeout(type, del?70:120); } type();
+  let counters=document.querySelectorAll('.counter'), observer=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ let el=e.target, target=parseInt(el.dataset.target), cur=0, inc=target/50; let interval=setInterval(()=>{ cur+=inc; if(cur>=target){ el.innerText=target; clearInterval(interval); } else el.innerText=Math.floor(cur); },20); observer.unobserve(el); } }); },{threshold:0.5}); counters.forEach(c=>observer.observe(c));
+  let testimonials=[{name:"Thabo Mokoena",loc:"Century City",text:"Facebook recovery done in under 2 hours!"},{name:"Linda van Wyk",loc:"Sea Point",text:"Windows installation flawless."},{name:"Sipho Dlamini",loc:"Bellville",text:"Linux installation + security audit."},{name:"Zoe Richards",loc:"Cape Town CBD",text:"Phone unlocking saved my device."},{name:"Ethan Jacobs",loc:"Durbanville",text:"Printer setup & POS fix within a day!"}];
+  let slider=document.getElementById('testimonialSlider'); if(slider) slider.innerHTML=testimonials.map(t=>`<div class="testimonial-card"><i class="fas fa-star" style="color:#0affa3"></i> ★★★★★<p>"${t.text}"</p><strong>${t.name}</strong><br><small>${t.loc}</small></div>`).join('');
+  let faqs=[{q:"How does remote support work?",a:"We connect via WhatsApp, then secure remote software."},{q:"What is the payment process?",a:"You pay only after successful completion."},{q:"Are ethical hacking services legal?",a:"Yes. Strictly with written authorization."},{q:"How fast is WhatsApp response?",a:"Typically under 5 minutes."},{q:"Printer setup or malfunction?",a:"Remote diagnostics + guided fix, or on-site if needed."},{q:"SIM swap recovery for lost number (older than year)?",a:"Yes, we assist with MTN/Vodacom processes. Deposit R400, total R1000."}];
+  let faqDiv=document.getElementById('faqContainer'); if(faqDiv) faqDiv.innerHTML=faqs.map((f,i)=>`<div class="faq-item"><div class="faq-question" onclick="toggleFaq(${i})">${f.q} <i class="fas fa-chevron-down"></i></div><div class="faq-answer" id="faqAns${i}"><p>${f.a}</p></div></div>`).join('');
+  let canvas=document.getElementById('particles-canvas'); if(canvas){ let ctx=canvas.getContext('2d'); let particles=[]; let resize=()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }; for(let i=0;i<100;i++) particles.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rad:Math.random()*2+1,alpha:Math.random()*0.5}); function draw(){ if(!ctx) return; ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.rad,0,Math.PI*2); ctx.fillStyle=`rgba(10,255,163,${p.alpha})`; ctx.fill(); }); requestAnimationFrame(draw); } window.addEventListener('resize',()=>{ resize(); draw(); }); resize(); draw(); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ e.preventDefault(); let t=document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); }));
+  initVideoPlayer();
+}
+populateServices(); updatePricePreview(); initBookingForm(); initContactForm(); initUI();
+</script>
+</body>
+</html>
